@@ -2,14 +2,16 @@ package model;
 
 public class Endereco {
 
-	private enum tipoLocal;
+	enum tipoLocal{ RESIDENCIA, FABRICA, COBRANCA};
 	private String logradouro;
 	private String numeracao;
+	private String complemento;
 	private String bairro;
 	private String cidade;	
 	private String municipio;
-	private String estado;	
+	enum uf{RO, AC, AM, RR, PA, AP, TO, MA, PI, CE, RN, PB, PE, AL, SE, BA, MG, ES, RJ, SP, PR, SC, RS, MS, MT, GO, DF};	
 	private int cep;
+	
 	
 	public String getLogradouro() {
 		return logradouro;
@@ -22,6 +24,12 @@ public class Endereco {
 	}
 	public void setNumeracao(String numeracao) {
 		this.numeracao = numeracao;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 	public String getBairro() {
 		return bairro;
@@ -41,18 +49,14 @@ public class Endereco {
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
 	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 	public int getCep() {
 		return cep;
 	}
 	public void setCep(int cep) {
 		this.cep = cep;
-	}	
+	}
+	
+	
 	
 	
 
