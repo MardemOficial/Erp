@@ -1,4 +1,4 @@
-package Lavezzi.erp.model;
+package model;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente extends Pessoa implements Serializable{
 	
 	/**
 	 * 
