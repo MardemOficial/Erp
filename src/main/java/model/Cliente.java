@@ -28,6 +28,10 @@ public class Cliente extends Pessoa implements Serializable{
 	@Column(nullable = false, length = 2)
 	private int age;
 	
+	public Cliente() {
+		super();
+	}
+	
 	public Cliente(String nomeCompleto, int cp, List<Endereco> endereco) {
 		super(nomeCompleto, cp, endereco);
 		// TODO Auto-generated constructor stub

@@ -1,7 +1,7 @@
 package controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import model.Cliente;
-import repository.ClienteRepository;
+import dto.ClienteDto;
+import service.ClienteService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -19,18 +20,19 @@ import repository.ClienteRepository;
 public class ClienteController {
 	
 	@Autowired
-	ClienteRepository clienteRepository;
+	ClienteService clienteService;
 		
 	@GetMapping("/{nome}")
-	public String saveCliente(@PathVariable String nome){
+	public String saveCliente(@PathVariable ClienteDto clienteDto){
 				
-		clienteRepository.save(new Cliente(nome, 12));
+		var cliente = new Cliente();		
+		BeanUtils.copyProperties(clienteDto, cliente);		
+		clienteService.saveCliente(cliente);
 		
-		return "Seu nome é: " + nome + " e tua idade é 12";
+		return "Seu nome ";
 	}
 	
 	 @RequestMapping(value = "/olamundo/{name}/{age}", method = RequestMethod.GET)
-	 @ResponseStatus(HttpStatus.OK)
 	 public String greetingText(@PathVariable String name , @PathVariable int age) {
       return "Hello " + name + " idade " + age;
      }
