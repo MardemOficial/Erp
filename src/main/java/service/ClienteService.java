@@ -10,13 +10,13 @@ import repository.ClienteRepository;
 public class ClienteService {
 
 	@Autowired
-	Cliente cliente;
+	ClientePesFis cliente;
 	@Autowired
 	ClienteRepository clienteRepository;
 	
 	//Salvar Cliente
 	@Transactional
-	public String saveCliente(Cliente Cliente) {
+	public String saveCliente(ClientePesFis Cliente) {
 		clienteRepository.save(cliente);		
 		return "Save";
 	}

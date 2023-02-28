@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.Cliente;
+import model.ClientePesFis;
 import dto.ClienteDto;
 import service.ClienteService;
 
@@ -22,10 +22,10 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 		
-	@GetMapping("/{nome}")
+	@PostMapping("/{nome}")
 	public String saveCliente(@PathVariable ClienteDto clienteDto){
 				
-		var cliente = new Cliente();		
+		var cliente = new ClientePesFis();		
 		BeanUtils.copyProperties(clienteDto, cliente);		
 		clienteService.saveCliente(cliente);
 		

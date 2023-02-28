@@ -2,7 +2,8 @@ package model;
 
 public class Endereco {
 
-	enum tipoLocal{ RESIDENCIA, FABRICA, COBRANCA};
+	//Especifica qual o tipo de estabelecimento.
+	enum tipoLocal{ RESIDENCIA, FABRICA, ESCRITORIO, COBRANCA };
 	private String logradouro;
 	private String numeracao;
 	private String complemento;

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ public abstract class Pessoa {
 	//cpf ou cpnj
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cp;
+	private UUID id;
 	@Column(nullable = false, length = 100)
 	private String nomeCompleto;
 	@Column(nullable = false, length = 100)
@@ -25,15 +26,15 @@ public abstract class Pessoa {
 		
 	}
 	
-	public Pessoa(String nomeCompleto, int cp, List<Endereco> endereco) {
+	public Pessoa(String nomeCompleto, UUID id, List<Endereco> endereco) {
 		this.nomeCompleto = nomeCompleto;
-		this.cp = cp;
+		this.id = id;
 		this.endereco = endereco;
 	}
 
 
-	public int getCp() {
-		return cp;
+	public UUID getCp() {
+		return this.id;
 	}
 
 
