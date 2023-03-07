@@ -1,7 +1,10 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,30 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import model.ClientePesFis;
+import model.ClientePF;
 import dto.ClienteDto;
 import service.ClienteService;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping(value="/cliente")
+@RequestMapping("/")
 public class ClienteController {
 	
 	@Autowired
 	ClienteService clienteService;
-		
-	@PostMapping("/{nome}")
-	public String saveCliente(@PathVariable ClienteDto clienteDto){
-				
-		var cliente = new ClientePesFis();		
+	
+	
+	@GetMapping("/cadastro")
+	public String ind() {
+		System.out.println("Entrou em ind");
+		return "cadastro/cadastropessoa";
+	}
+	
+	@PostMapping("/cadastro")
+	public String saveCliente(ClienteDto clienteDto){
+		System.out.println("Entrou em saveCliente");				
+		var cliente = new ClientePF();		
 		BeanUtils.copyProperties(clienteDto, cliente);		
 		clienteService.saveCliente(cliente);
 		
-		return "Seu nome ";
+		return "redirect:/index";
 	}
 	
-	 @RequestMapping(value = "/olamundo/{name}/{age}", method = RequestMethod.GET)
-	 public String greetingText(@PathVariable String name , @PathVariable int age) {
-      return "Hello " + name + " idade " + age;
-     }
+	@GetMapping("/lista")
+	public List<ClientePF> listaCliente() {
+		
+		
+		return clienteService.listaClientes();
+	}
+	
+	/** @GetMapping(value = "/{name}/{ages}")
+	 public String greetingText(@PathVariable String name , @PathVariable int ages) {
+      return "O nome deu certo" + name;
+     }*/
 }

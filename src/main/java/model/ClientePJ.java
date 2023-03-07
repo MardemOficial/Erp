@@ -8,10 +8,9 @@ import jakarta.validation.constraints.Pattern;
 
 
 @Entity
-public class ClientePesJuri extends Pessoa {
+public class ClientePJ extends Pessoa {
 
 	@Column(nullable = false, length = 14)
-	@Pattern(regexp = "(^\\d{2}.\\d{3}.\\d{3}/\\d{4}-\\d{2}$)")
 	private int cnpj;
 	private int insEstatual;
 	private int insMunicipal;
@@ -19,7 +18,7 @@ public class ClientePesJuri extends Pessoa {
 	enum unidadeDeNegocio {MATRIZ, FILIAL};
 
 	
-	public ClientePesJuri() {
+	public ClientePJ() {
 		// TODO Auto-generated constructor stub
 	}
 	
